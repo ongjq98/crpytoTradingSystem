@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09f8f55b-46cd-4480-a385-0bff342219ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Controller/TradeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Entity/BestPrice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Entity/Trade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Entity/TradeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Entity/Wallet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Repository/BestPriceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Repository/TradeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Repository/WalletRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Service/AggregationPriceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Service/TradeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/Service/TradeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/trading/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/BestPrice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Trade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Wallet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repository/BestPriceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repository/TradeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repository/WalletRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/TradeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/TradeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trading/main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-    </list>
+    <list default="true" id="09f8f55b-46cd-4480-a385-0bff342219ba" name="Changes" comment="backend updates / folder organised" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +64,14 @@
       <option name="presentableId" value="Default" />
       <updated>1761385227897</updated>
     </task>
+    <task id="LOCAL-00001" summary="backend updates / folder organised">
+      <created>1761403154326</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761403154326</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,5 +89,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="backend updates / folder organised" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend updates / folder organised" />
   </component>
 </project>
