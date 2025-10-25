@@ -33,30 +33,42 @@ public class TradeServiceImpl implements TradeService {
         BestPrice latest = bestPriceRepo.findTopByPairOrderByTimestampDesc(pair)
                 .orElseThrow(() -> new IllegalStateException("No price available for " + pair));
 
-        BigDecimal priceUsed = "BUY".equalsIgnoreCase(side) ? latest.getBestAsk() : latest.getBestBid();
+        BigDecimal priceUsed = null;
+        if("BUY".equalsIgnoreCase(side)){
+            priceUsed = latest.getBestAsk();
+        } else if("SELL".equalsIgnoreCase(side)){
+            priceUsed = latest.getBestBid();
+        } 
+
         BigDecimal totalUsdt = priceUsed.multiply(amountCrypto);
 
         Wallet usdtWallet = walletRepo.findByUserIdAndCurrency(userId, "USDT")
                 .orElseThrow(() -> new IllegalStateException("USDT wallet not found"));
 
         String crypto = pair.substring(0,3);
-        Wallet cryptoWallet = walletRepo.findByUserIdAndCurrency(userId, crypto)
-                .orElseGet(() -> {
-                    Wallet w = new Wallet();
-                    w.setUserId(userId);
-                    w.setCurrency(crypto);
-                    w.setBalance(BigDecimal.ZERO);
-                    return walletRepo.save(w);
-                });
+        Wallet cryptoWallet;
+        if("SELL".equalsIgnoreCase(side)){
+            cryptoWallet = walletRepo.findByUserIdAndCurrency(userId, crypto)
+                    .orElseThrow(() -> new IllegalArgumentException(crypto + " wallet not found"));
+        } else { // BUY
+            cryptoWallet = walletRepo.findByUserIdAndCurrency(userId, crypto)
+                    .orElseGet(() -> {
+                        Wallet w = new Wallet();
+                        w.setUserId(userId);
+                        w.setCurrency(crypto);
+                        w.setBalance(BigDecimal.ZERO);
+                        return walletRepo.save(w);
+                    });
+        }
 
         if("BUY".equalsIgnoreCase(side)){
             if(usdtWallet.getBalance().compareTo(totalUsdt) < 0)
                 throw new IllegalArgumentException("Insufficient USDT balance");
             usdtWallet.setBalance(usdtWallet.getBalance().subtract(totalUsdt));
             cryptoWallet.setBalance(cryptoWallet.getBalance().add(amountCrypto));
-        } else {
+        } else if("SELL".equalsIgnoreCase(side)) {
             if(cryptoWallet.getBalance().compareTo(amountCrypto) < 0)
-                throw new IllegalArgumentException("Insufficient crypto balance");
+                throw new IllegalArgumentException("Not enough crypto to sell");
             cryptoWallet.setBalance(cryptoWallet.getBalance().subtract(amountCrypto));
             usdtWallet.setBalance(usdtWallet.getBalance().add(totalUsdt));
         }
@@ -72,6 +84,8 @@ public class TradeServiceImpl implements TradeService {
         trade.setPriceUsed(priceUsed);
         trade.setTotalUsdt(totalUsdt);
         trade.setTimestamp(LocalDateTime.now());
+
         return tradeRepo.save(trade);
     }
+
 }
