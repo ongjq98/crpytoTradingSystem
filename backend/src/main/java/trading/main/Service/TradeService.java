@@ -1,11 +1,11 @@
-package Service;
+package trading.main.Service;
 
-import Entity.Trade;
+import trading.main.Entity.Trade;
 
 import java.math.BigDecimal;
 
 public interface TradeService {
 
-    Trade executeTrade(Long userId, String pair, String side, BigDecimal amountCrypto);
+    Trade executeTrade(String userId, String pair, String side, BigDecimal amountCrypto);
 
 }

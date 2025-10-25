@@ -1,7 +1,7 @@
-package Service;
+package trading.main.Service;
 
-import Entity.BestPrice;
-import Repository.BestPriceRepository;
+import trading.main.Entity.BestPrice;
+import trading.main.Repository.BestPriceRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AggregationPriceService {
@@ -17,6 +18,9 @@ public class AggregationPriceService {
     private final BestPriceRepository bestPriceRepo;
     private final RestTemplate rest = new RestTemplate();
     private final ObjectMapper mapper = new ObjectMapper();
+
+    private BestPrice latestBtc;
+    private BestPrice latestEth;
 
     public AggregationPriceService(BestPriceRepository bestPriceRepo) {
         this.bestPriceRepo = bestPriceRepo;
@@ -87,6 +91,7 @@ public class AggregationPriceService {
         btcPrice.setSourceAsk(btcSourceAsk);
         btcPrice.setTimestamp(LocalDateTime.now());
         bestPriceRepo.save(btcPrice);
+        latestBtc = btcPrice;
 
         // Aggregate ETH
         BigDecimal ethBestBid = binanceEthBid.max(huobiEthBid);
@@ -102,6 +107,15 @@ public class AggregationPriceService {
         ethPrice.setSourceAsk(ethSourceAsk);
         ethPrice.setTimestamp(LocalDateTime.now());
         bestPriceRepo.save(ethPrice);
+        latestEth = ethPrice;
+    }
+
+    public List<BestPrice> getLatestPrices() {
+        BestPrice latestBtc = bestPriceRepo.findTopByPairOrderByTimestampDesc("BTCUSDT")
+                .orElse(new BestPrice());
+        BestPrice latestEth = bestPriceRepo.findTopByPairOrderByTimestampDesc("ETHUSDT")
+                .orElse(new BestPrice());
+        return List.of(latestBtc, latestEth);
     }
 
 }

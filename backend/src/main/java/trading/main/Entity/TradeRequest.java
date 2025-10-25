@@ -1,4 +1,4 @@
-package Entity;
+package trading.main.Entity;
 
 import java.math.BigDecimal;
 

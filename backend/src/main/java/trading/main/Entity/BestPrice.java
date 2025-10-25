@@ -1,4 +1,4 @@
-package Entity;
+package trading.main.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;

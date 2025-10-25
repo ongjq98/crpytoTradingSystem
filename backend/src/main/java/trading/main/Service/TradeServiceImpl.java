@@ -1,12 +1,12 @@
-package Service;
+package trading.main.Service;
 
 
-import Entity.BestPrice;
-import Entity.Trade;
-import Entity.Wallet;
-import Repository.BestPriceRepository;
-import Repository.TradeRepository;
-import Repository.WalletRepository;
+import trading.main.Entity.BestPrice;
+import trading.main.Entity.Trade;
+import trading.main.Entity.Wallet;
+import trading.main.Repository.BestPriceRepository;
+import trading.main.Repository.TradeRepository;
+import trading.main.Repository.WalletRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +28,7 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     @Transactional
-    public Trade executeTrade(Long userId, String pair, String side, BigDecimal amountCrypto) {
+    public Trade executeTrade(String userId, String pair, String side, BigDecimal amountCrypto) {
 
         BestPrice latest = bestPriceRepo.findTopByPairOrderByTimestampDesc(pair)
                 .orElseThrow(() -> new IllegalStateException("No price available for " + pair));
@@ -72,9 +72,6 @@ public class TradeServiceImpl implements TradeService {
             cryptoWallet.setBalance(cryptoWallet.getBalance().subtract(amountCrypto));
             usdtWallet.setBalance(usdtWallet.getBalance().add(totalUsdt));
         }
-
-        walletRepo.save(usdtWallet);
-        walletRepo.save(cryptoWallet);
 
         Trade trade = new Trade();
         trade.setUserId(userId);

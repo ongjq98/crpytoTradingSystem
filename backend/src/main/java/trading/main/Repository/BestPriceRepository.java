@@ -1,6 +1,6 @@
-package Repository;
+package trading.main.Repository;
 
-import Entity.BestPrice;
+import trading.main.Entity.BestPrice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
