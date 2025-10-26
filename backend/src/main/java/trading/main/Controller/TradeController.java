@@ -56,7 +56,7 @@ public class TradeController {
 
     @GetMapping("/prices")
     public List<BestPrice> prices() {
-        return priceService.getLatestPrices(); // fetch all best prices
+        return priceService.getLatestPrices();
     }
 
 }
